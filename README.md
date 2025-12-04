@@ -1,0 +1,66 @@
+# Cloud-Native Face Recognition Service
+
+This repository contains the implementation for the **Cloud Service for recognizing known personalities on photos**, fulfilling the requirements for the **Abschlussarbeit Modul 346: Cloud Solutions Concept and Realization** .
+
+The project employs a fully automated, event-driven, **Cloud Native** architecture, leveraging **Serverless Computing** and **Infrastructure as Code (IaC)** principles.
+
+---
+
+## 1. Project Goals and Requirements
+
+The primary objective is to design and implement a highly automated cloud service capable of performing celebrity recognition .
+
+### Core Functional Goals 
+1.  **Face Recognition Service:** Create a service using an AWS Lambda function that recognizes known personalities in photos.
+2.  **Trigger Mechanism:** The recognition process must be started automatically via a **trigger** when a photo file is uploaded to an input location (In-Bucket).
+3.  **Result Output:** The details of the analysis, including the recognized `Name` and **MatchConfidence** (Trefferwahrscheinlichkeit), must be saved as a **JSON file** in an output location (Out-Bucket) .
+
+### Deployment and DevOps Goals
+1.  **Deployment Environment:** The service, including all necessary components, must be put into operation within the **AWS Learner-Lab** .
+2.  **Full Automation (IaC):** The service must be installed **fully automatically** (vollautomatisiert) by executing a **single script** (e.g., `Init.sh`) from a client (Windows or Linux) . This adheres to the principle of Infrastructure as Code .
+3.  **Testing:** A separate **Test-Script** is required to automate the testing process, including uploading the photo, waiting for completion, downloading the JSON result, and outputting the recognized names and probabilities .
+4.  **Version Control:** All required files and the documentation must be managed and **versioned** in a **Git-Repository** .
+5.  **Documentation:** The documentation must be written in **Markdown** format, with this `Readme.md` serving as the mandatory **entry point** .
+
+---
+
+## 2. Technical Stack and Architecture
+
+The entire architecture is designed around the **AWS Public Cloud**  and adheres to the **Cloud Native** maturity phase, focusing on scalability and efficiency .
+
+### 2.1 Cloud Services (Workloads)
+
+The service utilizes the following essential AWS services (Cloud-Workloads) :
+
+| Category                    | AWS Service                   | NIST Model                         | Role in Project                                                                                                               |
+| :-------------------------- | :---------------------------- | :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| **Cloud Provider**          | **Amazon Web Services (AWS)** | Public Cloud                       | The infrastructure provider, founded in 2006 .                                                                                |
+| **Compute & Logic**         | **AWS Lambda**                | PaaS (Platform as a Service)       | Hosts the core business logic as a **Serverless Function** .                                                                  |
+| **Artificial Intelligence** | **AWS Rekognition**           | Machine Learning Workload          | Performs the celebrity recognition (Recognizing celebrities) .                                                                |
+| **Storage (Input/Output)**  | **Amazon S3**                 | Object Storage                     | Provides the S3 Buckets (In- and Out-Bucket) necessary for triggering the function and storing the final JSON analysis file . |
+| **Identity Management**     | **AWS IAM**                   | Security, Identity, and Compliance | Used to set the **correct permissions** (Berechtigungen) for the Lambda function to access S3 and Rekognition .               |
+
+### 2.2 Development and Automation Tools
+
+The implementation focuses on automating all aspects of deployment and configuration management.
+
+| Tool / Technology          | Category              | Role in Project                                                                                                                                                        |
+| :------------------------- | :-------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Programming Language**   | Function Logic        | **TypeScript** (compiling to JavaScript/Node.js for Lambda runtime).                                                                                                   |
+| **Infrastructure as Code** | Automation Method     | Implementation relies on **Imperative IaC** .                                                                                                                          |
+| **IaC Tool**               | CLI Management        | **AWS CLI** (Command Line Interface). Used to control **all AWS services** through commands and automate deployment via scripts .                                      |
+| **Deployment Scripts**     | Automation            | Shell scripts (`Init.sh`, `Test-Script`) ensure all components are installed and tested **fully automatically** .                                                      |
+| **Version Control**        | DevOps Practice       | **Git**. Ensures traceability (who, when, what) of all code and documentation via regular commits .                                                                    |
+| **Client Environment**     | Operating System Tool | **Windows Subsystem for Linux (WSL)** and **Windows**. **WSL** however, enables execution of Linux programs and shell scripts directly on the Windows client machine . |
+| **Documentation**          | Required Format       | **Markdown**. Used for all project documentation, including this entry point .                                                                                         |
+
+---
+
+## 3. Deployment and Operation Overview
+
+The deployment process is highly streamlined to meet the requirement for full automation (Gütestufe 3 for Automation):
+
+1.  **Preparation:** Clone this Git repository.
+2.  **Provisioning:** Execute the single `Init.sh` script. This script uses the AWS CLI to create the S3 buckets, configure IAM roles, deploy the Lambda function code (written in TypeScript/Node.js), and set up the S3 trigger and permissions.
+3.  **Testing:** Execute the `Test-Script`. This script verifies functionality by uploading a test photo, waiting for the Lambda function to process it via AWS Rekognition, downloading the resulting JSON file, and displaying the recognized name and match confidence.
+4.  **Traceability:** All configurations and changes are tracked within Git.
