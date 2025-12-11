@@ -17,7 +17,7 @@ export class RekognitionAdapter implements IRecognitionService {
 
         if (response.CelebrityFaces && response.CelebrityFaces.length > 0) {
             // Get the match with the highest confidence
-            const topMatch = response.CelebrityFaces.reduce((prev, current) =>
+            const topMatch = response.CelebrityFaces.reduce((prev: any, current: any) =>
                 (prev.MatchConfidence ?? 0) > (current.MatchConfidence ?? 0) ? prev : current
             );
 

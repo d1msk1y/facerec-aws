@@ -1,7 +1,7 @@
 import type { S3Event, Context } from "aws-lambda";
-import { S3Adapter } from "./infrastructure/S3Adapter";
-import { RekognitionAdapter } from "./infrastructure/RekognitionAdapter";
-import { RecognizeCelebrity } from "./application/RecognizeCelebrity";
+import { S3Adapter } from "./infrastructure/S3Adapter.ts";
+import { RekognitionAdapter } from "./infrastructure/RekognitionAdapter.ts";
+import { RecognizeCelebrity } from "./application/RecognizeCelebrity.ts";
 
 // --- Configuration ---
 const REGION = process.env.AWS_REGION || "us-east-1";

@@ -1,10 +1,16 @@
 import type { IImageStorageService, IRecognitionService, RecognitionResult } from "../domain/types";
 
 export class RecognizeCelebrity {
+    private storageService: IImageStorageService;
+    private recognitionService: IRecognitionService;
+
     constructor(
-        private storageService: IImageStorageService,
-        private recognitionService: IRecognitionService
-    ) { }
+        storageService: IImageStorageService,
+        recognitionService: IRecognitionService
+    ) {
+        this.storageService = storageService;
+        this.recognitionService = recognitionService;
+    }
 
     async execute(sourceBucket: string, sourceKey: string, destBucket: string): Promise<void> {
         console.log(`[UseCase] Starting recognition. Source: ${sourceBucket}/${sourceKey}, Dest: ${destBucket}`);
