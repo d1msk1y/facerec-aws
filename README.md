@@ -54,6 +54,18 @@ The implementation focuses on automating all aspects of deployment and configura
 | **Client Environment**     | Operating System Tool | **Windows Subsystem for Linux (WSL)** and **Windows**. **WSL** however, enables execution of Linux programs and shell scripts directly on the Windows client machine . |
 | **Documentation**          | Required Format       | **Markdown**. Used for all project documentation, including this entry point .                                                                                         |
 
+
+### 2.3 Software Architecture (Hexagonal Design)
+
+Unlike typical simple Lambda scripts, this project implements a robust **Hexagonal Architecture** (Ports and Adapters) to ensure maintainability, testability, and clean separation of concerns.
+
+-   **Domain Layer (`src/domain`)**: Contains the core business rules and interface definitions (Ports). This layer is pure and has **zero dependencies** on external frameworks or AWS SDKs.
+-   **Application Layer (`src/application`)**: Contains the use cases (e.g., `RecognizeCelebrity`). It orchestrates the logic by communicating with the Domain and Infrastructure layers through interfaces.
+-   **Infrastructure Layer (`src/infrastructure`)**: Contains the "Adapters" (e.g., `S3Adapter`, `RekognitionAdapter`) that implement the domain interfaces. This is the **only** place where AWS SDKs are imported.
+-   **Composition Root (`src/index.ts`)**: The entry point that "wires" everything together, injecting specific infrastructure adapters into the application use cases.
+
+This design proves that the solution is not just a script, but a well-engineered software application ready for extension and testing.
+
 ---
 
 ## 3. Deployment and Operation Overview
