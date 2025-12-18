@@ -1,6 +1,6 @@
 import type { IImageStorageService, IRecognitionService, RecognitionResult } from "../domain/types";
 
-export class RecognizeCelebrity {
+class RecognizeCelebrity {
     private storageService: IImageStorageService;
     private recognitionService: IRecognitionService;
 
@@ -41,3 +41,5 @@ export class RecognizeCelebrity {
         }
     }
 }
+
+export default RecognizeCelebrity;

@@ -1,7 +1,7 @@
 import { RekognitionClient, RecognizeCelebritiesCommand } from "@aws-sdk/client-rekognition";
 import type { IRecognitionService, RecognitionResult } from "../domain/types";
 
-export class RekognitionAdapter implements IRecognitionService {
+class RekognitionAdapter implements IRecognitionService {
     private client: RekognitionClient;
 
     constructor(region: string) {
@@ -30,3 +30,5 @@ export class RekognitionAdapter implements IRecognitionService {
         return null;
     }
 }
+
+export default RekognitionAdapter;

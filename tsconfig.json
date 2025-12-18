@@ -12,7 +12,7 @@
     "types": [
       "node"
     ],
-    "noEmit": true
+    "noEmit": false
   },
   "ts-node": {
     "esm": true

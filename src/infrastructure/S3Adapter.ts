@@ -2,7 +2,7 @@ import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3
 import { Readable } from "stream";
 import type { IImageStorageService, RecognitionResult } from "../domain/types";
 
-export class S3Adapter implements IImageStorageService {
+class S3Adapter implements IImageStorageService {
     private client: S3Client;
 
     constructor(region: string) {
@@ -39,3 +39,5 @@ export class S3Adapter implements IImageStorageService {
         });
     }
 }
+
+export default S3Adapter;

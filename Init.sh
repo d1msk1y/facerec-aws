@@ -35,51 +35,60 @@ else
   echo "Bucket $OUT_BUCKET already exists"
 fi
 
-# 2. Create IAM Role
-echo "[2/8] Creating IAM Role..."
-TRUST_POLICY='{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}'
-
-if aws iam get-role --role-name "$ROLE_NAME" >/dev/null 2>&1; then
-  echo "Role $ROLE_NAME already exists"
+# 2. & 3. IAM Role Handling
+echo "[2/8] Checking IAM Role..."
+# Check if LabRole exists (standard for Learners Lab)
+if aws iam get-role --role-name "LabRole" >/dev/null 2>&1; then
+  echo "Found Admin/LabRole. Using it."
+  ROLE_NAME="LabRole"
+  # Clean up any local tracking if needed, but primarily just use this name.
+  # We skip attaching policies because LabRole typically has AdminAccess or sufficient scope,
+  # and we don't have permissions to modify it.
 else
-  aws iam create-role --role-name "$ROLE_NAME" --assume-role-policy-document "$TRUST_POLICY"
-  echo "Created role $ROLE_NAME"
-fi
-
-# 3. Attach Policies
-echo "[3/8] Attaching Policies..."
-# Basic Lambda Execution (Logs)
-aws iam attach-role-policy --role-name "$ROLE_NAME" --policy-arn "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-
-# Custom Policy for S3 and Rekognition
-# Note: For production, scope down S3 resources to specific buckets.
-CUSTOM_POLICY='{
+  echo "LabRole not found. Creating $ROLE_NAME..."
+  
+  TRUST_POLICY='{
     "Version": "2012-10-17",
     "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetObject",
-                "s3:PutObject",
-                "rekognition:RecognizeCelebrities"
-            ],
-            "Resource": "*"
-        }
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "lambda.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      }
     ]
-}'
-aws iam put-role-policy --role-name "$ROLE_NAME" --policy-name "$POLICY_NAME" --policy-document "$CUSTOM_POLICY"
-echo "Attached policies to $ROLE_NAME"
+  }'
+
+  if aws iam get-role --role-name "$ROLE_NAME" >/dev/null 2>&1; then
+    echo "Role $ROLE_NAME already exists"
+  else
+    aws iam create-role --role-name "$ROLE_NAME" --assume-role-policy-document "$TRUST_POLICY"
+    echo "Created role $ROLE_NAME"
+  fi
+
+  # Attach Policies only if we created/own the role
+  echo "[3/8] Attaching Policies..."
+  aws iam attach-role-policy --role-name "$ROLE_NAME" --policy-arn "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+
+  CUSTOM_POLICY='{
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "s3:GetObject",
+                  "s3:PutObject",
+                  "rekognition:RecognizeCelebrities"
+              ],
+              "Resource": "*"
+          }
+      ]
+  }'
+  aws iam put-role-policy --role-name "$ROLE_NAME" --policy-name "$POLICY_NAME" --policy-document "$CUSTOM_POLICY"
+  echo "Attached policies to $ROLE_NAME"
+fi
+
 
 # Wait for role propagation
 echo "Waiting for role propagation (10s)..."
