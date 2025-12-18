@@ -17,8 +17,6 @@ echo "--------------------------"
 # 0. Check if image exists
 if [ ! -f "$TEST_IMAGE" ]; then
     echo "Error: $TEST_IMAGE not found. Downloading a sample..."
-    # Placeholder: Create a dummy file or fail? 
-    # Let's fail politely or ask user.
     echo "Please provide a 'test_image.jpg' in the current directory."
     exit 1
 fi

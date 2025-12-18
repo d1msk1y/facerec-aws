@@ -37,13 +37,10 @@ fi
 
 # 2. & 3. IAM Role Handling
 echo "[2/8] Checking IAM Role..."
-# Check if LabRole exists (standard for Learners Lab)
+
 if aws iam get-role --role-name "LabRole" >/dev/null 2>&1; then
   echo "Found Admin/LabRole. Using it."
   ROLE_NAME="LabRole"
-  # Clean up any local tracking if needed, but primarily just use this name.
-  # We skip attaching policies because LabRole typically has AdminAccess or sufficient scope,
-  # and we don't have permissions to modify it.
 else
   echo "LabRole not found. Creating $ROLE_NAME..."
   
