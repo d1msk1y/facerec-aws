@@ -1,4 +1,10 @@
 // Domain Entities
+/*
+Author: Dmytro Yatsenko, Julian Saxer
+Date: 2025-12-19
+Version: 1.0
+*/
+
 export interface RecognitionResult {
     Name: string;
     MatchConfidence: number;

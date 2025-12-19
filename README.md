@@ -64,15 +64,65 @@ Unlike typical simple Lambda scripts, this project implements a robust **Hexagon
 -   **Infrastructure Layer (`src/infrastructure`)**: Contains the "Adapters" (e.g., `S3Adapter`, `RekognitionAdapter`) that implement the domain interfaces. This is the **only** place where AWS SDKs are imported.
 -   **Composition Root (`src/index.ts`)**: The entry point that "wires" everything together, injecting specific infrastructure adapters into the application use cases.
 
+
 This design proves that the solution is not just a script, but a well-engineered software application ready for extension and testing.
 
+### 2.4 Architecture Diagram
+
+The following diagram visualizes the **Hexagonal Architecture** and the data flow:
+
+![alt text](<docs/AWS Rekognition Celebrity-Diagram.png>)
 ---
 
 ## 3. Deployment and Operation Overview
 
-The deployment process is highly streamlined to meet the requirement for full automation (Gütestufe 3 for Automation):
+The deployment process is highly streamlined to meet the requirement for full automation:
 
 1.  **Preparation:** Clone this Git repository.
 2.  **Provisioning:** Execute the single `Init.sh` script. This script uses the AWS CLI to create the S3 buckets, configure IAM roles, deploy the Lambda function code (written in TypeScript/Node.js), and set up the S3 trigger and permissions.
 3.  **Testing:** Execute the `Test-Script`. This script verifies functionality by uploading a test photo, waiting for the Lambda function to process it via AWS Rekognition, downloading the resulting JSON file, and displaying the recognized name and match confidence.
 4.  **Traceability:** All configurations and changes are tracked within Git.
+
+---
+
+## 4. Project Organization
+
+### 4.1 Task Distribution (Aufgabenverteilung)
+
+The project tasks were distributed among the team members as follows (Weighting based on B2):
+
+| Task / Activity | Responsible Person | Status |
+| :--- | :--- | :--- |
+| **Project Conception & Planning** | *Dima* | Done |
+| **AWS Infrastructure (Init.sh)** | *Julian* | Done |
+| **Use Case Implementation (TypeScript)** | *Dima & Julian* | Done |
+| **Documentation (Markdown)** | *Julian & Dima* | Done |
+| **Testing & verification** | *Julian* | Done |
+
+### 4.2 Reflexion
+
+#### Dima
+
+> *Der schwierigste Teil des Projekts bestand darin, alle vorliegenden Informationen in eine klare Architektur umzusetzen. Ich hatte keine klare Vorstellung davon, wo ich anfangen sollte. Ich musste in einer realen Situation viele neue Dinge lernen, wie AWS CLI, IAM-Rollen, S3-Buckets, Lambda-Funktionen und so weiter. Die eigentliche Umsetzung war für mich nicht so schwer, da ich bereits über fundierte Erfahrungen mit TypeScript und Node.js verfüge. Für das nächste Projekt würde ich mir mehr Zeit für die initiale Planung der IAM-Berechtigungen nehmen, um 'AccessDenied' Fehler früher zu vermeiden.*
+
+#### Julian
+
+> *Für mich war es ein sehr interessantes Projekt. Ich musste auch viel Neues lernen. Es ist eine Sache, alles in der Theorie zu wissen, aber eine andere, es in der Praxis anzuwenden. Es war auch interessant zu sehen, wie die Architektur in der Praxis funktioniert. Ich habe auch etwas über die hexagonale Architektur gelernt und wie sie in einem realen Projekt umgesetzt werden kann. Beim nächsten Mal würde ich die Test-Automatisierung früher aufsetzen, um manuelles Testen während der Entwicklung zu reduzieren.*
+
+---
+
+## 5. Sources
+
+The following documentation and resources were used during the development of this project:
+
+*   **AWS Documentation**:
+    *   [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)
+    *   [Amazon Rekognition Documentation](https://docs.aws.amazon.com/rekognition/)
+    *   [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
+    *   [AWS CLI Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html)
+*   **Architecture**:
+    *   [Hexagonal Architecture (Ports and Adapters)](https://alistair.cockburn.us/hexagonal-architecture/)
+    *   [Building Serverless Applications with Hexagonal Architecture](https://aws.amazon.com/blogs/compute/developing-evolutionary-architecture-with-aws-lambda/)
+*   **AI-Accelerated Development**
+    *   [Gemini 3 Pro](https://gemini-3-pro.com/)
+    *   [ChatGPT](https://chat.openai.com)

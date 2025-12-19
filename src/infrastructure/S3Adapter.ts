@@ -1,3 +1,9 @@
+/*
+Author: Dmytro Yatsenko, Julian Saxer
+Date: 2025-12-19
+Version: 1.0
+*/
+
 import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
 import type { IImageStorageService, RecognitionResult } from "../domain/types";

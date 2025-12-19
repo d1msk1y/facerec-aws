@@ -1,3 +1,9 @@
+/*
+Author: Dmytro Yatsenko, Julian Saxer
+Date: 2025-12-19
+Version: 1.0
+*/
+
 import { RekognitionClient, RecognizeCelebritiesCommand } from "@aws-sdk/client-rekognition";
 import type { IRecognitionService, RecognitionResult } from "../domain/types";
 

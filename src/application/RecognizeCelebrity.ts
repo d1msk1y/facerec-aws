@@ -1,3 +1,9 @@
+/*
+Author: Dmytro Yatsenko, Julian Saxer
+Date: 2025-12-19
+Version: 1.0
+*/
+
 import type { IImageStorageService, IRecognitionService, RecognitionResult } from "../domain/types";
 
 class RecognizeCelebrity {
