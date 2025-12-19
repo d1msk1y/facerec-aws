@@ -40,7 +40,13 @@ if aws s3 ls "s3://$OUT_BUCKET/$RESULT_KEY"; then
     cat result.json
     echo ""
     echo "----------------------"
-    echo "Test Passed."
+    
+    # Extract Name and Confidence using grep/sed (since jq might not be available)
+    NAME=$(grep -o '"Name":"[^"]*"' result.json | cut -d'"' -f4)
+    CONFIDENCE=$(grep -o '"MatchConfidence":[^,}]*' result.json | cut -d':' -f2)
+
+    echo "Detected: $NAME (Confidence: $CONFIDENCE%)"
+    echo " Test Passed."
 else
     echo "Error: Result file not found in output bucket."
     echo "Check Lambda CloudWatch logs for details."
