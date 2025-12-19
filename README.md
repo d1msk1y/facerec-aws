@@ -103,8 +103,23 @@ The project tasks were distributed among the team members as follows (Weighting 
 
 #### Dima
 
-> *Der schwierigste Teil des Projekts bestand darin, alle vorliegenden Informationen in eine klare Architektur umzusetzen. Ich hatte keine klare Vorstellung davon, wo ich anfangen sollte. Ich musste in einer realen Situation viele neue Dinge lernen, wie AWS CLI, IAM-Rollen, S3-Buckets, Lambda-Funktionen und so weiter. Die eigentliche Umsetzung war für mich nicht so schwer, da ich bereits über fundierte Erfahrungen mit TypeScript und Node.js verfüge.*
+> *Der schwierigste Teil des Projekts bestand darin, alle vorliegenden Informationen in eine klare Architektur umzusetzen. Ich hatte keine klare Vorstellung davon, wo ich anfangen sollte. Ich musste in einer realen Situation viele neue Dinge lernen, wie AWS CLI, IAM-Rollen, S3-Buckets, Lambda-Funktionen und so weiter. Die eigentliche Umsetzung war für mich nicht so schwer, da ich bereits über fundierte Erfahrungen mit TypeScript und Node.js verfüge. Für das nächste Projekt würde ich mir mehr Zeit für die initiale Planung der IAM-Berechtigungen nehmen, um 'AccessDenied' Fehler früher zu vermeiden.*
 
 #### Julian
 
-> *Für mich war es ein sehr interessantes Projekt. Ich musste auch viel Neues lernen. Es ist eine Sache, alles in der Theorie zu wissen, aber eine andere, es in der Praxis anzuwenden. Es war auch interessant zu sehen, wie die Architektur in der Praxis funktioniert. Ich habe auch etwas über die hexagonale Architektur gelernt und wie sie in einem realen Projekt umgesetzt werden kann.*
+> *Für mich war es ein sehr interessantes Projekt. Ich musste auch viel Neues lernen. Es ist eine Sache, alles in der Theorie zu wissen, aber eine andere, es in der Praxis anzuwenden. Es war auch interessant zu sehen, wie die Architektur in der Praxis funktioniert. Ich habe auch etwas über die hexagonale Architektur gelernt und wie sie in einem realen Projekt umgesetzt werden kann. Beim nächsten Mal würde ich die Test-Automatisierung früher aufsetzen, um manuelles Testen während der Entwicklung zu reduzieren.*
+
+---
+
+## 5. Sources
+
+The following documentation and resources were used during the development of this project:
+
+*   **AWS Documentation**:
+    *   [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)
+    *   [Amazon Rekognition Documentation](https://docs.aws.amazon.com/rekognition/)
+    *   [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
+    *   [AWS CLI Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html)
+*   **Architecture**:
+    *   [Hexagonal Architecture (Ports and Adapters)](https://alistair.cockburn.us/hexagonal-architecture/)
+    *   [Building Serverless Applications with Hexagonal Architecture](https://aws.amazon.com/blogs/compute/developing-evolutionary-architecture-with-aws-lambda/)
