@@ -76,7 +76,7 @@ The following diagram visualizes the **Hexagonal Architecture** and the data flo
 
 ## 3. Deployment and Operation Overview
 
-The deployment process is highly streamlined to meet the requirement for full automation (Gütestufe 3 for Automation):
+The deployment process is highly streamlined to meet the requirement for full automation:
 
 1.  **Preparation:** Clone this Git repository.
 2.  **Provisioning:** Execute the single `Init.sh` script. This script uses the AWS CLI to create the S3 buckets, configure IAM roles, deploy the Lambda function code (written in TypeScript/Node.js), and set up the S3 trigger and permissions.
@@ -123,3 +123,6 @@ The following documentation and resources were used during the development of th
 *   **Architecture**:
     *   [Hexagonal Architecture (Ports and Adapters)](https://alistair.cockburn.us/hexagonal-architecture/)
     *   [Building Serverless Applications with Hexagonal Architecture](https://aws.amazon.com/blogs/compute/developing-evolutionary-architecture-with-aws-lambda/)
+*   **AI-Accelerated Development**
+    *   [Gemini 3 Pro](https://gemini-3-pro.com/)
+    *   [ChatGPT](https://chat.openai.com)
