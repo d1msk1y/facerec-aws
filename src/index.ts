@@ -1,3 +1,9 @@
+/*
+Author: Dmytro Yatsenko, Julian Saxer
+Date: 2025-12-19
+Version: 1.0
+*/
+
 import type { S3Event, Context } from "aws-lambda";
 import S3Adapter from "./infrastructure/S3Adapter.js";
 import RekognitionAdapter from "./infrastructure/RekognitionAdapter.js";

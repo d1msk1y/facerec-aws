@@ -64,8 +64,14 @@ Unlike typical simple Lambda scripts, this project implements a robust **Hexagon
 -   **Infrastructure Layer (`src/infrastructure`)**: Contains the "Adapters" (e.g., `S3Adapter`, `RekognitionAdapter`) that implement the domain interfaces. This is the **only** place where AWS SDKs are imported.
 -   **Composition Root (`src/index.ts`)**: The entry point that "wires" everything together, injecting specific infrastructure adapters into the application use cases.
 
+
 This design proves that the solution is not just a script, but a well-engineered software application ready for extension and testing.
 
+### 2.4 Architecture Diagram
+
+The following diagram visualizes the **Hexagonal Architecture** and the data flow:
+
+![alt text](<docs/AWS Rekognition Celebrity-Diagram.png>)
 ---
 
 ## 3. Deployment and Operation Overview
