@@ -82,3 +82,29 @@ The deployment process is highly streamlined to meet the requirement for full au
 2.  **Provisioning:** Execute the single `Init.sh` script. This script uses the AWS CLI to create the S3 buckets, configure IAM roles, deploy the Lambda function code (written in TypeScript/Node.js), and set up the S3 trigger and permissions.
 3.  **Testing:** Execute the `Test-Script`. This script verifies functionality by uploading a test photo, waiting for the Lambda function to process it via AWS Rekognition, downloading the resulting JSON file, and displaying the recognized name and match confidence.
 4.  **Traceability:** All configurations and changes are tracked within Git.
+
+---
+
+## 4. Project Organization
+
+### 4.1 Task Distribution (Aufgabenverteilung)
+
+The project tasks were distributed among the team members as follows (Weighting based on B2):
+
+| Task / Activity | Responsible Person | Status |
+| :--- | :--- | :--- |
+| **Project Conception & Planning** | *Dima* | Done |
+| **AWS Infrastructure (Init.sh)** | *Julian* | Done |
+| **Use Case Implementation (TypeScript)** | *Dima & Julian* | Done |
+| **Documentation (Markdown)** | *Julian & Dima* | Done |
+| **Testing & verification** | *Julian* | Done |
+
+### 4.2 Reflexion
+
+#### Dima
+
+> *Der schwierigste Teil des Projekts bestand darin, alle vorliegenden Informationen in eine klare Architektur umzusetzen. Ich hatte keine klare Vorstellung davon, wo ich anfangen sollte. Ich musste in einer realen Situation viele neue Dinge lernen, wie AWS CLI, IAM-Rollen, S3-Buckets, Lambda-Funktionen und so weiter. Die eigentliche Umsetzung war für mich nicht so schwer, da ich bereits über fundierte Erfahrungen mit TypeScript und Node.js verfüge.*
+
+#### Julian
+
+> *Für mich war es ein sehr interessantes Projekt. Ich musste auch viel Neues lernen. Es ist eine Sache, alles in der Theorie zu wissen, aber eine andere, es in der Praxis anzuwenden. Es war auch interessant zu sehen, wie die Architektur in der Praxis funktioniert. Ich habe auch etwas über die hexagonale Architektur gelernt und wie sie in einem realen Projekt umgesetzt werden kann.*
